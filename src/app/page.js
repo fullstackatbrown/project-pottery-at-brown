@@ -24,21 +24,12 @@ export default function Home() {
     <div>
       <Header />
       <div className="flex flex-col min-h-full">
-        <div className="flex flex-row p-10 bg-gray-200 h-2/3">
-          <div className="grid grid-rows-2 grid-cols-2 gap-4">
-            <div className="row-start-2">
+        <div className="flex flex-row p-10 h-2/3 bg-gray-200">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="">
               <Pottery className="p-20" />
             </div>
           </div>
-        </div>
-        <div className="flex grid grid-col-6 gap-4 p-10 bg-white justfy-center items-center">
-          <Image
-            className="row-span-2"
-            src="/brown.svg"
-            alt="Brown"
-            width={200}
-            height={200}
-          />
         </div>
       </div>
       <Footer />
