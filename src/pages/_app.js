@@ -1,5 +1,6 @@
 import Layout from "../components/Layout";
-import "../styles/globals.css"; // Import global styles if needed
+import "../app/globals.css";
+import "../app/join-us.css"; 
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -10,4 +11,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-
