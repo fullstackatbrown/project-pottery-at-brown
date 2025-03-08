@@ -1,11 +1,19 @@
 import Layout from "../components/Layout";
-import "../styles/globals.css"; // Import global styles if needed
+// import "../styles/globals.css"; // Import global styles if needed
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:wght@400&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 }
 

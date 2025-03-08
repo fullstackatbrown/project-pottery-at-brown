@@ -1,4 +1,4 @@
-// File: /Users/yandima/BrownCS/project-pottery-at-brown/src/app/page.js
+// File: C:\Users\baili\OneDrive\Documents\Bailing\Brown University 2024-2028\Spring 2025\FullStack\project-pottery-at-brown\src\app\page.js
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
