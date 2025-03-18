@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Footer = () => {
 	return (
 		<footer className="flex flex-col gap-y-4 w-full">
