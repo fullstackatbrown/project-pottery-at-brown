@@ -4,6 +4,7 @@ import "./globals.css";
 import "@fontsource/hedvig-letters-serif";
 import Layout from "../components/Layout";
 
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
