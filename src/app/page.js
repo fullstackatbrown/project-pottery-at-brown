@@ -1,22 +1,20 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-
-
 function Pottery() {
   return (
     <div className="flex flex-col bg-white p-12 rounded-lg justfy-center items-center drop-shadow-2xl ">
       <h1 className="text-3xl text-[#513223] font-normal pb-4 font-hedvig">
-        About Pottery @ Brown
+        Join Pottery @ Brown
       </h1>
-      <h2 className="text-xl text-[#513223] font-normal pb-4 font-inter">Short Tagline</h2>
+      <h2 className="text-xl text-[#513223] font-normal pb-4 font-inter">
+        Pottery @ Brown is open to any member of the Brown or RISD community, of
+        all experience levels!
+      </h2>
       <p className="text-lg text-[#513223] pb-4 font-inter">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        If you're looking for a leadership position, we also have a team of
+        Studio Aides who act as teachers and space managers, ensuring that
+        operations run smoothly and everyone feels supported.
       </p>
-      <button className="bg-[#3B7F9C] text-white font-bold py-4 px-36 rounded-full font-inter">
-        Apply Now!
+      <button className="text-[24px] bg-[#3B7F9C] text-white font-bold py-5 px-6 rounded-full font-inter">
+        Fill out the interest form now!
       </button>
     </div>
   );
@@ -25,7 +23,6 @@ function Pottery() {
 export default function Home() {
   return (
     <div>
-      <Header />
       <div className="flex flex-col min-h-full">
         {/* Background Section */}
         <div className="relative flex flex-row p-10 h-2/3 bg-[url(/pottery.png)] bg-cover bg-center">
@@ -40,7 +37,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

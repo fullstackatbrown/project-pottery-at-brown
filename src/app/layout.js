@@ -2,6 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "@fontsource/hedvig-letters-serif";
+import Layout from "../components/Layout";
+
 
 const inter = Inter({
   subsets: ['latin'],
@@ -29,7 +31,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        
+        <Layout>
+          {children}
+        </Layout>
       </body>
     </html>
   );
