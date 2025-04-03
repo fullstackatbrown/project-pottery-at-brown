@@ -1,4 +1,6 @@
+"use client"
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 function Profile(props) {
   return (
@@ -27,144 +29,99 @@ function Profile(props) {
 }
 
 export default function Workshops() {
+  const [adminProfiles, setAdminProfiles] = useState([]);
+  const [studioAidProfiles, setStudioAidProfiles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchProfiles() {
+      try {
+        const response = await fetch(
+          "https://api.cosmicjs.com/v3/buckets/potterybrown-production/objects?pretty=true&query=%7B%22type%22:%22leaderships%22%7D&limit=18&skip=0&read_key=d457O3yZQcIoACYAEF2Q6SYGoBQ5Q8waV36wRrfgaf9HOnjHVU&depth=1&props=slug,title,metadata,type,"
+        );
+        
+        if (!response.ok) {
+          throw new Error("Failed to fetch profiles");
+        }
+        
+        const data = await response.json();
+        
+        const admins = data.objects.filter(profile => profile.metadata.admin === true);
+        const studioAids = data.objects.filter(profile => profile.metadata.admin === false);
+        
+        setAdminProfiles(admins);
+        setStudioAidProfiles(studioAids);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    }
+
+    fetchProfiles();
+  }, []);
+
+const getImageUrl = (profile) => {
+    if (profile.metadata.image && profile.metadata.image.imgix_url) {
+      return profile.metadata.image.imgix_url;
+    }
+    else if (profile.metadata.image && profile.metadata.image.url) {
+      return profile.metadata.image.url;
+    }
+    return "/placeholder-image.png";
+  };
+
   return (
     <main className="bg-[url(/background.png)] bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-10 h-full">
+      {/*admins*/}
       <div className="flex flex-col min-h-full justify-center items-center">
         <h1 className="text-[50px] font-hedvig text-[#513223]">Admin</h1>
-        <div className="grid grid-cols-3 grid-rows-2 px-55">
-          <Profile
-            title="Co President"
-            name="Zavion H. '27"
-            pronouns="(he/him)"
-            description="Architecture + Urban Studies"
-            image="/Leadership/Admin/president.png"
-          />
-          <Profile
-            title="President"
-            name="Jasper L. '25"
-            pronouns="(he/him)"
-            description="Chemical Physics & Applied Math"
-            image="/Leadership/Admin/president2.png"
-          />
-          <Profile
-            title="Vice President"
-            name="Rachel H. '27"
-            pronouns="(she/her)"
-            description="English"
-            image="/Leadership/Admin/vice-pres.png"
-          />
-          <Profile
-            title="Technical Officer"
-            name="Fuka I. '26"
-            pronouns="(she/her)"
-            description="Engineering"
-            image="/Leadership/Admin/technical-officer.png"
-          />
-          <Profile
-            title="Finanical Officer"
-            name="Sarah N. '27"
-            pronouns="(she/her)"
-            description="Mechanical Engineering"
-            image="/Leadership/Admin/financial-officer.png"
-          />
-          <Profile
-            title="Events Officer"
-            name="Julia G. 27"
-            pronouns="(she/her)"
-            description="Computer Science and Cognitive Neuroscience"
-            image="/Leadership/Admin/events-officer.png"
-          />
-        </div>
+        {loading ? (
+          <p>Loading profiles...</p>
+        ) : error ? (
+          <p>Error loading profiles: {error}</p>
+        ) : (
+          <div className="grid grid-cols-3 grid-rows-2 px-55">
+            {adminProfiles.map((admin) => (
+              <Profile
+                key={admin.slug}
+                title={admin.metadata.title}
+                name={admin.title}
+                pronouns={admin.metadata.pronouns}
+                description={admin.metadata.description}
+                image={getImageUrl(admin)}
+              />
+            ))}
+          </div>
+        )}
       </div>
+
+      {/*studio aids*/}
       <div className="flex flex-col min-h-full justify-center items-center">
         <h1 className="text-[50px] font-hedvig text-[#513223]">Studio Aids</h1>
-        <div className="grid grid-cols-4 grid-rows-2">
-          <Profile
-            title=""
-            name="Victoria L. '28"
-            pronouns="(she/her)"
-            description="English"
-            image="/Leadership/Studio/victoria.png"
-          />
-          <Profile
-            title=""
-            name="Noah P. '28"
-            pronouns="(he/him)"
-            description="Applied Math-Econ & History of Art and Architecture"
-            image="/Leadership/Studio/noah.png"
-          />
-          <Profile
-            title=""
-            name="Niahan G. '28"
-            pronouns="(she/her)"
-            description="Art and Computation"
-            image="/Leadership/Studio/nihan.png"
-          />
-          <Profile
-            title=""
-            name="Naja W. '27"
-            pronouns="(she/her)"
-            description="History & Africana Studies"
-            image="/Leadership/Studio/naja.png"
-          />
-          <Profile
-            title=""
-            name="Katelynn P. '26"
-            pronouns="(she/her)"
-            description="Biology"
-            image="/Leadership/Studio/kaitlyn.png"
-          />
-          <Profile
-            title=""
-            name="Kaitlin D. '27"
-            pronouns="(she/her)"
-            description="Applied Math-Biology"
-            image="/Leadership/Studio/kaitlin.png"
-          />
-          <Profile
-            title=""
-            name="Jolin Z. '28"
-            pronouns="(she/her)"
-            description="Glass"
-            image="/Leadership/Studio/jolin.png"
-          />
-          <Profile
-            title=""
-            name="Isidora S. '28"
-            pronouns="(she/her)"
-            description="Environmental Science"
-            image="/Leadership/Studio/isadora.png"
-          />
-          <Profile
-            title=""
-            name="Hellie C. '27"
-            pronouns="(she/her)"
-            description="Mechanical Engineering"
-            image="/Leadership/Studio/hellie.png"
-          />
-          <Profile
-            title=""
-            name="Emmi G. '28"
-            pronouns="(she/her)"
-            description="Undecided"
-            image="/Leadership/Studio/emmie.png"
-          />
-          <Profile
-            title=""
-            name="Celia P. '8"
-            pronouns="(she/her/ella)"
-            description="Sociology and IAPA"
-            image="/Leadership/Studio/celi.png"
-          />
-          <Profile
-            title=""
-            name="Ari S. '6"
-            pronouns="(she/they)"
-            description="Biology and Geochemistry"
-            image="/Leadership/Studio/ari.png"
-          />
-        </div>
+        {loading ? (
+          <p>Loading profiles...</p>
+        ) : error ? (
+          <p>Error loading profiles: {error}</p>
+        ) : studioAidProfiles.length === 0 ? (
+          <p>No studio aids found</p>
+        ) : (
+          <div className="grid grid-cols-4 grid-rows-3">
+            {studioAidProfiles.map((studioAid) => (
+              <Profile
+                key={studioAid.slug}
+                title={studioAid.metadata.title || ""}
+                name={studioAid.title}
+                pronouns={studioAid.metadata.pronouns}
+                description={studioAid.metadata.description}
+                image={getImageUrl(studioAid)}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </main>
   );
 }
+
