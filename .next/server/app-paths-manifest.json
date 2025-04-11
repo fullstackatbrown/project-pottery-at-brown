@@ -1,8 +1,11 @@
 {
-  "/page": "app/page.js",
-  "/workshops/page": "app/workshops/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/faq/page": "app/faq/page.js",
+  "/join/page": "app/join/page.js",
   "/gallery/page": "app/gallery/page.js",
   "/leadership/page": "app/leadership/page.js",
-  "/faq/page": "app/faq/page.js",
-  "/about/page": "app/about/page.js"
+  "/page": "app/page.js",
+  "/workshops/page": "app/workshops/page.js"
 }

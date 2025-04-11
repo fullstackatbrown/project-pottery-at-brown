@@ -1,5 +1,5 @@
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 function DonationWidget() {
   return (
@@ -34,7 +34,7 @@ export default function Donation() {
           {/* Content */}
           <div className="grid grid-cols-2 gap-24 relative z-10 px-12">
             <div className="">
-              <Pottery className="" />
+              {/* <Pottery className="" /> */}
             </div>
           </div>
         </div>
