@@ -4,17 +4,24 @@ import { useState, useEffect } from "react";
 
 function Profile(props) {
   return (
-    <div className="pb-10 flex flex-col rounded-lg justfy-center items-center drop-shadow-2xl text-center">
+    <div className="pb-10 flex flex-col rounded-lg justify-center items-center drop-shadow-2xl text-center group">
       <h2 className="font-bold text-xl text-[#513223] pb-4 font-inter">
         {props.title}
       </h2>
-      <Image
-        src={props.image}
-        alt={props.name}
-        width={200}
-        height={200}
-        className="rounded-full border-4 border-[#513223]"
-      />
+      {/* Hover effect area on image */}
+      <div className="relative">
+        <Image
+          src={props.image}
+          alt={props.name}
+          width={200}
+          height={200}
+          className="rounded-full border-4 border-[#513223] transition-transform duration-300 group-hover:scale-105"
+        />
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p className="text-white text-lg font-bold">{props.hoverText}</p>
+        </div>
+      </div>
       <h1 className="text-3xl text-[#513223] font-normal font-hedvig">
         {props.name}
       </h1>
@@ -91,6 +98,7 @@ const getImageUrl = (profile) => {
                 pronouns={admin.metadata.pronouns}
                 description={admin.metadata.description}
                 image={getImageUrl(admin)}
+                hoverText="PlaceHolder" // Add hover text prop if needed
               />
             ))}
           </div>
