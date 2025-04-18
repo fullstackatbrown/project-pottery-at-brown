@@ -7,7 +7,7 @@ function Art(props){
 		<div className="relative group flex flex-col rounded-lg justify-center items-center drop-shadow-2xl text-center w-[300px] h-[300px]">
 			<Image
 				src={props.image}
-				alt={props.name}
+				alt="Gallery Image"
 				fill
 				className="object-cover transition-transform duration-300"
 			/>
