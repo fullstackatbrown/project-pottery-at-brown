@@ -132,4 +132,3 @@ const getImageUrl = (profile) => {
     </main>
   );
 }
-
