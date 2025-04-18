@@ -22,12 +22,10 @@ function Pottery() {
 
 export default function Home() {
   return (
-    <div>
-      <div className="flex flex-col min-h-full">
+    <div className="flex-1 bg-[url(/pottery.png)] bg-cover bg-center relative flex flex-1 p-10 h-full">
         {/* Background Section */}
-        <div className="relative flex flex-row p-10 h-2/3 bg-[url(/pottery.png)] bg-cover bg-center">
           {/* Overlay */}
-          <div className="absolute inset-0 bg-[#CFA88880]"></div>
+          <div className="h-full flex-1 absolute inset-0 bg-[#CFA88880]"></div>
 
           {/* Content */}
           <div className="grid grid-cols-2 gap-24 relative z-10 px-12">
@@ -35,8 +33,6 @@ export default function Home() {
               <Pottery className="" />
             </div>
           </div>
-        </div>
-      </div>
     </div>
   );
 }
