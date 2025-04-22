@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -32,44 +33,33 @@ export default function Gallery() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
+	const READ_KEY = process.env.NEXT_PUBLIC_COSMIC_READ_KEY;
+
 	useEffect(() => {
-		async function fetchProfiles() {
-		try {
-			const response = await fetch(
-			"https://api.cosmicjs.com/v3/buckets/potterybrown-production/objects?pretty=true&query=%7B%22type%22:%22leaderships%22%7D&limit=18&skip=0&read_key=d457O3yZQcIoACYAEF2Q6SYGoBQ5Q8waV36wRrfgaf9HOnjHVU&depth=1&props=slug,title,metadata,type,"
-			);
-			
-			if (!response.ok) {
-			throw new Error("Failed to fetch profiles");
-			}
-			
+		async function fetchGallery() {
+		  try {
+			const query = encodeURIComponent(JSON.stringify({ type: "gallery" }));
+			const url =  "https://api.cosmicjs.com/v3/buckets/potterybrown-production/objects?pretty=true&query=%7B%22type%22:%22galleries%22%7D&limit=100&read_key=d457O3yZQcIoACYAEF2Q6SYGoBQ5Q8waV36wRrfgaf9HOnjHVU&depth=1&props=slug,title,metadata";
+	
+			const response = await fetch(url);
+			if (!response.ok) throw new Error("Failed to fetch gallery");
+	
 			const data = await response.json();
-			
-			const admins = data.objects.filter(profile => profile.metadata.admin === true);
-			const studioAids = data.objects.filter(profile => profile.metadata.admin === false);
-			
-			setAdminProfiles(admins);
-			setStudioAidProfiles(studioAids);
+			setGallery(data.objects || []);
 			setLoading(false);
-		} catch (err) {
+		  } catch (err) {
 			setError(err.message);
 			setLoading(false);
+		  }
 		}
-		}
-
-		fetchProfiles();
-	}, []);
-
-	const getImageUrl = (profile) => {
-		if (profile.metadata.image && profile.metadata.image.imgix_url) {
-		return profile.metadata.image.imgix_url;
-		}
-		else if (profile.metadata.image && profile.metadata.image.url) {
-		return profile.metadata.image.url;
-		}
-		return "/placeholder-image.png";
-	};
-
+	
+		fetchGallery();
+	  }, [READ_KEY]);
+	
+	  const getImageUrl = (item) => {
+		const image = item.metadata?.image;
+		return image?.imgix_url || image?.url || "/placeholder-image.png";
+	  };
 
 	return (
 		<main className="bg-[url(/background.png)] bg-cover bg-center min-h-screen flex flex-col justify-center p-10 h-full">
@@ -77,33 +67,21 @@ export default function Gallery() {
 				<p className="justify-center items-center text-center pb-10">
 					Gallery
 				</p>
-				<div className="grid grid-cols-3 grid-rows-6 gap-10 px-10">
-					{/* Place Holder until backend fits all the images */}
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-					<Art image="/images/placehold.jpg" hoverText="Art 1" />
-				</div>
+							{loading ? (
+					<p className="text-center">Loading gallery...</p>
+				) : error ? (
+					<p className="text-center text-red-500">Error: {error}</p>
+				) : (
+					<div className="grid grid-cols-3 gap-10 px-10 justify-center items-center">
+					{artGallery.map((art) => (
+						<Art
+						key={art.slug}
+						image={getImageUrl(art)}
+						hoverText={art.metadata?.credits || "Unknown"}
+						/>
+					))}
+					</div>
+				)}
 			</h1>
 		</main>
 	);
