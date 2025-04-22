@@ -18,7 +18,7 @@ export default function Home() {
 					About Pottery @ Brown
 				</h1>
 
-				<p
+				{/*<p
 					style={{
 						color: "#513223",
 						fontFamily: "'Inter', serif",
@@ -26,16 +26,16 @@ export default function Home() {
 						fontSize: "24px",
 					}}
 				>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna
-					aliqua.
-				</p>
+					
+				</p>*/}
 
 				<div className="flex flex-col sm:flex-row items-center gap-40 w-full mt-8">
 					<div
 						className="w-full sm:w-2/5 p-4 rounded-lg"
 						style={{
 							backgroundColor: "#D3D3D3",
+							backgroundImage: "url('images/about-1.jpeg')",
+							backgroundSize: "cover",
 							height: "350px",
 							border: "5px solid #593625",
 						}}
@@ -50,29 +50,135 @@ export default function Home() {
 						}}
 					>
 						<p>
-							Details about the location of the club, meeting
-							times, resources at the location, etc.
+							As of Fall 2024, Pottery @ Brown is a student organization looking to provide equal access to working with clay mediums. The club will support student activities at local studios and primarily towards a fully functional pottery studio on campus grounds. 
+
 						</p>
 						<p>
-							Details about the location of the club, meeting
-							times, resources at the location, etc.
+							Because ceramics opportunities are so competitive on College Hill, we hope to extend this opportunity such that it is more accessible to students across disciplines, backgrounds, and socioeconomic status. 
+
 						</p>
-						<p>
-							Details about the location of the club, meeting
-							times, resources at the location, etc.
-						</p>
-						<p>
-							Details about the location of the club, meeting
-							times, resources at the location, etc.
-						</p>
-						<a href="#" className="text-[#3B7F9C] underline">
+						<button className="text-[24px] bg-[#3B7F9C] text-white font-bold py-5 px-6 rounded-full font-inter">
+					        Join us!
+					      </button>
+						{/*<a href="#" className="text-[#3B7F9C] underline">
 							Link to mailing list/something relevant
-						</a>
+						</a>*/}
 					</div>
 				</div>
 			</div>
 
-			<div className="flex flex-col items-center w-full max-w-5xl gap-8 p-20 mx-auto">
+			<div className="flex flex-col items-start w-full max-w-8xl gap-8 p-20 pl-40 pr-40">
+
+				<h1 className="text-[50px] font-hedvig text-[#513223] mx-auto !justify-center !items-center">
+					Initiatives
+				</h1>
+
+				<div className="flex flex-col sm:flex-row items-center gap-40 w-full mt-8">
+
+					<div
+						className="w-full text-[#513223] space-y-4"
+						style={{
+							fontFamily: "'Inter', serif",
+							fontWeight: 400,
+							fontSize: "20px",
+						}}
+					>
+						<p>
+							Pottery @ Brown is dedicated to fostering creativity and community through various ceramics programs. Currently, we operate two initiatives:
+
+						</p>
+						
+					</div>
+				</div>
+
+				<div className="flex flex-col sm:flex-row items-center gap-40 w-full mt-8">
+					<div
+						className="w-full sm:w-2/5 p-4 rounded-lg"
+						style={{
+							backgroundColor: "#D3D3D3",
+							backgroundImage: "url('images/about-2.jpeg')",
+							height: "350px",
+							backgroundSize: "cover",
+							border: "5px solid #593625",
+						}}
+					></div>
+
+					<div
+						className="w-full sm:w-3/5 text-[#513223] space-y-4"
+						style={{
+							fontFamily: "'Inter', serif",
+							fontWeight: 400,
+							fontSize: "20px",
+						}}
+					>
+						<h2 className="text-[40px] font-hedvig text-[#513223] mx-auto !justify-center !items-center">
+							Mudstone Studios Program
+						</h2>
+						<p>
+							This program offers a four-week studio opportunity for 20 club members at Mudstone Studios in Pawtucket. We allocate exclusive studio time and welcome a new cohort of members each month. 
+
+						</p>
+						
+						{/*<a href="#" className="text-[#3B7F9C] underline">
+							Link to mailing list/something relevant
+						</a>*/}
+					</div>
+				</div>
+				<br></br>
+
+				<h2 className="text-[40px] font-hedvig text-[#513223] mx-auto !justify-center !items-center">
+					BDW Studio Program
+				</h2>
+
+				<div className="flex flex-col sm:flex-row items-center gap-40 w-full mt-8">
+
+					<div
+						className="w-full text-[#513223] space-y-4"
+						style={{
+							fontFamily: "'Inter', serif",
+							fontWeight: 400,
+							fontSize: "20px",
+						}}
+					>
+						<p>
+							Currently accommodates 60 club members, with 6 members in the space at once. We hope to open this to a larger body of students in the near future.
+
+						</p>
+						
+					</div>
+				</div>
+
+				<br></br>
+
+				<div className="flex flex-col sm:flex-row items-center gap-40 w-full mt-8">
+
+					<div
+						className="w-full text-[#513223] space-y-4"
+						style={{
+							fontFamily: "'Inter', serif",
+							fontWeight: 400,
+							fontSize: "20px",
+						}}
+					>
+						<p className="text-center">
+							Additionally, we plan to introduce outdoor open hand-building sessions later in the spring, taking advantage of the pleasant weather. 
+
+						</p>
+						<br></br>
+						<a href="https://www.brownalumnimagazine.com/articles/2025-01-16/brown-pottery-club">
+							<p className="text-center">
+							Check out our feature in the Brown Alumni Magazine!
+							</p>
+						</a>
+						
+					</div>
+				</div>
+
+
+
+			</div>
+
+			{/*<div className="flex flex-col items-center w-full max-w-5xl gap-8 p-20 mx-auto">
 				<h1
 					style={{
 						color: "#513223",
@@ -151,9 +257,9 @@ export default function Home() {
 						ullamco laboris nisi ut aliquip ex ea commodo consequat.
 					</span>
 				</p>
-			</div>
+			</div>*/}
 
-			<div className="flex flex-col items-center w-full max-w-5xl gap-8 p-20 mx-auto">
+			{/*<div className="flex flex-col items-center w-full max-w-5xl gap-8 p-20 mx-auto">
 				<h1
 					style={{
 						color: "#513223",
@@ -192,7 +298,7 @@ export default function Home() {
 						</div>
 					))}
 				</div>
-			</div>
+			</div>*/}
 		</main>
 	);
 }
