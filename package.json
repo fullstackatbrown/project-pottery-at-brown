@@ -12,7 +12,7 @@
     "@cosmicjs/sdk": "^1.5.2",
     "@fontsource/hedvig-letters-serif": "^5.2.5",
     "@next/font": "^14.2.15",
-    "form-data": "^4.0.2",
+    "form-data": "^4.0.4",
     "next": "^15.2.3",
     "node-fetch": "^2.7.0",
     "react": "^19.0.0",
